@@ -8,7 +8,11 @@ a, b = input('Введите через пробел 2 строчные лати
 num_a = ord(a) - 96
 num_b = ord(b) - 96
 
-distance = abs(num_b - num_a - 1)
+if a == b:
+    distance = 0
+
+else:
+    distance = abs(num_b - num_a) - 1
 
 print(f'Позиции введенных букв в алфавите: {num_a} и {num_b}')
 print(f'Между этими буквами букв: {distance}')
