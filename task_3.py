@@ -10,4 +10,17 @@ k = (y2 - y1) / (x2 - x1)
 b = (x2*y1 - x1*y2) / (x2 - x1)
 
 print('Уравнение прямой, которая проходит через заданные точки:')
-print(f'y = {k}x + {b}')
+if b == 0:
+
+    if k == 0:
+        print('y = 0')
+
+    else:
+        print(f'y = {k}x')
+
+else:
+    if k == 0:
+        print(f'y = {b}')
+
+    else:
+        print(f'y = {k}x + {b}')
