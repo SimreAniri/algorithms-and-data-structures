@@ -16,11 +16,11 @@ if b == 0:
         print('y = 0')
 
     else:
-        print(f'y = {k}x')
+        print(f'y = {k}*x')
 
 else:
     if k == 0:
         print(f'y = {b}')
 
     else:
-        print(f'y = {k}x + {b}')
+        print(f'y = {k}*x + {b}')
