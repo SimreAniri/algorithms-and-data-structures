@@ -11,5 +11,5 @@ unit = a % 10
 summa = hundred + dozen + unit
 mult = hundred * dozen * unit
 
-print(f'Сумма цифр в числе: {sum}')
+print(f'Сумма цифр в числе: {summa}')
 print(f'Произведение цифр в числе: {mult}')
