@@ -4,7 +4,7 @@
 
 num = int(input('Введите порядковый номер буквы: '))
 
-num += 96
+num += ord('a') - 1
 
 a = chr(num)
 
