@@ -5,8 +5,8 @@
 
 a, b = input('Введите через пробел 2 строчные латинские буквы: ').split()
 
-num_a = ord(a) - 96
-num_b = ord(b) - 96
+num_a = ord(a) - ord('a') + 1
+num_b = ord(b) - ord('a') + 1
 
 if a == b:
     distance = 0
