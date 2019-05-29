@@ -11,15 +11,15 @@ number = random.randint(0, 100)
 print('Угадайте загаданное целое число от 0 до 100. У Вас 10 попыток.')
 MAX_SHOT = 10
 shot = 0
-luck = 0
+luck = False
 
-while shot < MAX_SHOT and luck == 0:
+while shot < MAX_SHOT and luck is False:
     shot += 1
     print(f'Попытка {shot}')
     guess = int(input('Введите ваше число: '))
 
     if guess == number:
-        luck = 1
+        luck = True
 
     elif guess > number:
         print('Ваше число больше загаданного')
@@ -27,7 +27,7 @@ while shot < MAX_SHOT and luck == 0:
     else:
         print('Ваше число меньше загаданного')
 
-if luck == 0:
+if not luck:
     print(f'Ваши попытки закончились. Мы загадали {number}')
 
 else:
