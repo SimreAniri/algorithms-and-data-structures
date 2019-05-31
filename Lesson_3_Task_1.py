@@ -5,11 +5,7 @@ MAX_NUMBER = 99
 MIN_DIV = 2
 MAX_DIV = 9
 
-count = {i: 0 for i in range(MIN_DIV, MAX_DIV + 1)}
+print('Делитель    Чисел на него делится')
 
 for div in range(MIN_DIV, MAX_DIV + 1):
-    count[div] = MAX_NUMBER // div
-
-print('Делитель    Чисел на него делится')
-for div in count:
-    print(f'{div:>6}  {count[div]:>16}')
+    print(f'{div:>6} {MAX_NUMBER // div:>16}')
