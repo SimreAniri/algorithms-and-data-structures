@@ -15,30 +15,20 @@ def sum_hex(x, y):
     result = deque()
     transfer = 0
 
-    while len(x) and len(y):
-        res = hex_num[x.pop()] + hex_num[y.pop()] + transfer
-        transfer = 0
+    if len(y) > len(x):
+        x, y = deque(y), deque(x)
 
-        if res < 16:
-            result.appendleft(hex_num[res])
-
-        else:
-            result.appendleft(hex_num[res - 16])
-            transfer = 1
+    else:
+        x, y = deque(x), deque(y)
 
     while len(x):
-        res = hex_num[x.pop()] + transfer
-        transfer = 0
 
-        if res < 16:
-            result.appendleft(hex_num[res])
+        if len(y):
+            res = hex_num[x.pop()] + hex_num[y.pop()] + transfer
 
         else:
-            result.appendleft(hex_num[res - 16])
-            transfer = 1
+            res = hex_num[x.pop()] + transfer
 
-    while len(y):
-        res = hex_num[y.pop()] + transfer
         transfer = 0
 
         if res < 16:
@@ -51,15 +41,27 @@ def sum_hex(x, y):
     if transfer:
         result.appendleft('1')
 
-    return result
+    return list(result)
+
+
+def mult_hex(x, y):
+    hex_num = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+               'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15,
+               0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9,
+               10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
+    result = deque()
+    spam = [0 for _ in range(len(y))]
+
+    for i in range(len(y)):
+        pass
 
 
 print('Для ввода шестнадцатиричных чисел используйте:')
 print('0 1 2 3 4 5 6 7 8 9 A B C D E F\n')
-a = deque(input('Введите 1-е шестнадцатиричное число: '))
-b = deque(input('Введите 2-е шестнадцатиричное число: '))
+a = list(input('Введите 1-е шестнадцатиричное число: '))
+b = list(input('Введите 2-е шестнадцатиричное число: '))
 # print(a, b)
 
-print(*a, '+', *b, '=', end=' ')
-print(*sum_hex(a, b))
+print(*a, '+', *b, '=', *sum_hex(a, b))
 
+print(*a, '*', *b, '=', *sum_hex(a, b))
