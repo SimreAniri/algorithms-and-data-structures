@@ -82,7 +82,7 @@ def mult_hex(x, y):
     if transfer:
             result.appendleft(hex_num[transfer])
 
-    return result
+    return list(result)
 
 
 print('Для ввода шестнадцатиричных чисел используйте:')
