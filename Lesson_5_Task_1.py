@@ -21,7 +21,7 @@ for i in range(enterprise_count):
         year += quarter
 
     profit_sum += year
-    enterprises[i] = Enterprise(name, quarters[0], quarters[1], quarters[2], quarters[3], year)
+    enterprises[i] = Enterprise(name, *quarters, year)
     # print(enterprises[i])
 
 if enterprise_count == 1:
