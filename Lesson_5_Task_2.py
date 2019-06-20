@@ -8,7 +8,7 @@ from collections import deque
 
 
 def sum_hex(x, y):
-    hex_num = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+    HEX_NUM = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
                'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15,
                0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9',
                10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
@@ -24,18 +24,18 @@ def sum_hex(x, y):
     while x:
 
         if y:
-            res = hex_num[x.pop()] + hex_num[y.pop()] + transfer
+            res = HEX_NUM[x.pop()] + HEX_NUM[y.pop()] + transfer
 
         else:
-            res = hex_num[x.pop()] + transfer
+            res = HEX_NUM[x.pop()] + transfer
 
         transfer = 0
 
         if res < 16:
-            result.appendleft(hex_num[res])
+            result.appendleft(HEX_NUM[res])
 
         else:
-            result.appendleft(hex_num[res - 16])
+            result.appendleft(HEX_NUM[res - 16])
             transfer = 1
 
     if transfer:
@@ -45,7 +45,7 @@ def sum_hex(x, y):
 
 
 def mult_hex(x, y):
-    hex_num = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+    HEX_NUM = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
                'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15,
                0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9',
                10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
@@ -55,10 +55,10 @@ def mult_hex(x, y):
     x, y = x.copy(), deque(y)
 
     for i in range(len(y)):
-        m = hex_num[y.pop()]
+        m = HEX_NUM[y.pop()]
 
         for j in range(len(x) - 1, -1, -1):
-            spam[i].appendleft(m * hex_num[x[j]])
+            spam[i].appendleft(m * HEX_NUM[x[j]])
 
         for _ in range(i):
             spam[i].append(0)
@@ -73,14 +73,14 @@ def mult_hex(x, y):
                 res += spam[i].pop()
 
         if res < 16:
-            result.appendleft(hex_num[res])
+            result.appendleft(HEX_NUM[res])
 
         else:
-            result.appendleft(hex_num[res % 16])
+            result.appendleft(HEX_NUM[res % 16])
             transfer = res // 16
 
     if transfer:
-            result.appendleft(hex_num[transfer])
+            result.appendleft(HEX_NUM[transfer])
 
     return list(result)
 
