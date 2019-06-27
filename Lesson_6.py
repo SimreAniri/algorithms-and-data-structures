@@ -14,35 +14,15 @@ def memory_count(lst):
         print('Весит: ', sys.getsizeof(var))
         spam = sys.getsizeof(var)
 
-        if hasattr(var, 'keys'):
+        if hasattr(var, '__iter__') and not isinstance(var, str):
 
-            for j in var:
-                print(f'\nПодпеременная: \'{j}\' весит {sys.getsizeof(j)}')
+            if hasattr(var, 'keys'):
+                for key, value in var.items():
+                    print(f'\nКлюч: \'{key}\' значение {value}')
+                    spam += memory_count([key]) + memory_count([value])
 
-                if hasattr(var[j], '__iter__'):
-
-                    if hasattr(var[j], 'keys'):
-                        spam += memory_count([var[j]]) + sys.getsizeof(j)
-
-                    else:
-                        spam += memory_count(var[j]) + sys.getsizeof(j) + sys.getsizeof(var[j])
-
-                else:
-                    print(f'Вес его значения {var[j]}: {sys.getsizeof(var[j])}')
-                    spam += sys.getsizeof(var[j]) + sys.getsizeof(j)
-
-        else:
-
-            if hasattr(var, '__iter__') and not isinstance(var, str):
-
-                for j in var:
-                    print(f'\nПодпеременная: {j} весит {sys.getsizeof(j)}')
-
-                    if hasattr(j, '__iter__'):
-                        spam += memory_count(j) + sys.getsizeof(j)
-
-                    else:
-                        spam += sys.getsizeof(j)
+            else:
+                spam += memory_count(var)
 
         memory += spam
 
@@ -151,14 +131,14 @@ def memory_count(lst):
 # *******************Для проверки написанной функции на других типах переменных**************************
 a = 1
 b = [1, [2, 2], 3]
-c = {'a': 1, 'ab': [2, 3], 'abc': {4: 5, '66': 7}}
+c = {'a': 1, 'ab': [2, 3], 'abc': {4: 5, '66': 7, 8: 'de'}}
 d = 'abcd'
+e = {1, 'ab', 2}
 
 # Переменные:  [1, [1, [2, 2], 3], {'a': 1, 'ab': [2, 3], 'abc': {4: 5, '66': 7}}, 'abcd']
 # Затраты памяти программы:  1293
 
 # ***************************************************************************************************
-print()
 # собираем переменные для подсчета затрачиваемой памяти
 _variable = []
 for i in dir():
