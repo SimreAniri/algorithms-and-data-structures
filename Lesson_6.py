@@ -14,14 +14,14 @@ def memory_count(lst):
         print('Весит: ', sys.getsizeof(var))
         spam = sys.getsizeof(var)
 
-        if 'keys' in dir(var):
+        if hasattr(var, 'keys'):
 
             for j in var:
                 print(f'\nПодпеременная: \'{j}\' весит {sys.getsizeof(j)}')
 
-                if '__iter__' in dir(var[j]):
+                if hasattr(var[j], '__iter__'):
 
-                    if 'keys' in dir(var[j]):
+                    if hasattr(var[j], 'keys'):
                         spam += memory_count([var[j]]) + sys.getsizeof(j)
 
                     else:
@@ -33,12 +33,12 @@ def memory_count(lst):
 
         else:
 
-            if '__iter__' in dir(var) and not isinstance(var, str):
+            if hasattr(var, '__iter__') and not isinstance(var, str):
 
                 for j in var:
                     print(f'\nПодпеременная: {j} весит {sys.getsizeof(j)}')
 
-                    if '__iter__' in dir(j):
+                    if hasattr(j, '__iter__'):
                         spam += memory_count(j) + sys.getsizeof(j)
 
                     else:
@@ -149,19 +149,20 @@ def memory_count(lst):
 
 
 # *******************Для проверки написанной функции на других типах переменных**************************
-# a = 1
-# b = [1, [2, 2], 3]
-# c = {'a': 1, 'ab': [2, 3], 'abc': {4: 5, '66': 7}}
-# d = 'abcd'
+a = 1
+b = [1, [2, 2], 3]
+c = {'a': 1, 'ab': [2, 3], 'abc': {4: 5, '66': 7}}
+d = 'abcd'
 
 # Переменные:  [1, [1, [2, 2], 3], {'a': 1, 'ab': [2, 3], 'abc': {4: 5, '66': 7}}, 'abcd']
 # Затраты памяти программы:  1293
 
 # ***************************************************************************************************
 print()
+# собираем переменные для подсчета затрачиваемой памяти
 _variable = []
 for i in dir():
-    if i[0] != '_' and '__name__' not in dir(locals()[i]):
+    if i[0] != '_' and not hasattr(locals()[i], '__name__'):
         _variable.append(locals()[i])
 
 print('\nПеременные: ', _variable, '\n')
