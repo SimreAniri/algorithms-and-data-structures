@@ -24,8 +24,6 @@ def bubble_sort(lst):
 
         n += 1
 
-    return lst
-
 
 SIZE = 10
 MIN_ITEM = -100
@@ -33,4 +31,5 @@ MAX_ITEM = 99
 array = [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
 
 print('Массив:', array, sep='\n')
-print('После сортировки:', bubble_sort(array), sep='\n')
+bubble_sort(array)
+print('После сортировки:', array, sep='\n')
