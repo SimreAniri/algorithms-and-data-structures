@@ -5,7 +5,7 @@ import random
 
 
 def merge_sort(arr):
-    
+
     def merge(fst, snd):
         res = []
         i, j = 0, 0
